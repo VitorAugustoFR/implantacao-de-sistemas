@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/09/2024 às 22:04
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 10/09/2024 às 17:31
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,28 +43,50 @@ CREATE TABLE `ata` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `externo`
+--
+
+CREATE TABLE `externo` (
+  `nome` varchar(150) NOT NULL,
+  `empresa` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `senha` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `funcionarios`
+--
+
+CREATE TABLE `funcionarios` (
+  `nome` varchar(150) NOT NULL,
+  `matricula` int(11) NOT NULL,
+  `sexo` varchar(80) NOT NULL,
+  `data_nascimento` date NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `senha` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `setor`
+--
+
+CREATE TABLE `setor` (
+  `nome` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `sugestoes`
 --
 
 CREATE TABLE `sugestoes` (
   `data` date NOT NULL,
   `descricao` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `nome` varchar(150) NOT NULL,
-  `matricula` int(11) NOT NULL,
-  `empresa` varchar(150) NOT NULL,
-  `sexo` varchar(15) NOT NULL,
-  `data_nascimento` date NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `tipo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -78,9 +100,9 @@ ALTER TABLE `ata`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices de tabela `funcionarios`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`matricula`);
 
 --
@@ -92,6 +114,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `ata`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  MODIFY `matricula` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
