@@ -23,11 +23,11 @@
                 </div>
                 <div class="card-body">
                     <form action=".php" method="post">
-                        <label class="form-label">Nome</label>
-                        <input class="form-control" type="text" name="nome" required placeholder="Digite a sua matrícula"/>
+                        <label class="form-label">E-mail</label>
+                        <input class="form-control" type="text" name="email" required placeholder="Digite seu E-mail"/>
                         <br/>
-                        <label class="form-label">Matrícula</label>
-                        <input class="form-control" type="password" name="matricula" required placeholder="Digite a sua senha"/>
+                        <label class="form-label">Senha</label>
+                        <input class="form-control" type="password" name="senha" required placeholder="Digite a sua senha"/>
                         <br/>
                         <br/>
                         <input type="submit" class="btn btn-outline-success" value="LOGIN"/>

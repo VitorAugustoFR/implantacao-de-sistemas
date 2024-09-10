@@ -1,10 +1,10 @@
 <?php
     $matricula = $_SESSION["matricula"];
     include 'conecta.php';
-    $tipo = mysqli_query($mysqli, "SELECT matricula, tipo FROM usuarios WHERE matricula='$matricula'");
+    $tipo = mysqli_query($mysqli, "SELECT matricula FROM funcionarios,externo WHERE matricula='$matricula'");
     $dados = mysqli_fetch_assoc($tipo);
-    $funcionario = $dados["tipo"];
-    if ($funcionario ==  "Funcionario") {
+    $funcionario = $dados["matricula"];
+    if (!$funcionario == null) {
         echo "<a href='biblioteca.php' style='color: black; text-decoration: none'>HOME</a>
         <b> | </b>
         <a href='livro.php' style='color: black; text-decoration: none'>LIVROS</a>

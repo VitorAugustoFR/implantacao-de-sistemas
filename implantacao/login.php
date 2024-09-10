@@ -1,19 +1,17 @@
 <?php
     session_start();
     include 'conecta.php';
-    $nome = $_POST['nome'];
-    $matricula = $_POST['matricula'];
-    $empresa = $_POST['empresa'];
-    $login = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE nome='$nome' AND matricula='$matricula' OR empresa='$empresa'") or die("Erro ao selecionar!");
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $login = mysqli_query($mysqli,"SELECT * FROM funcionarios, externos WHERE email='$email' AND senha='$senha'") or die("Erro ao selecionar!");
     if (mysqli_num_rows($login) > 0) {
         $dados = mysqli_fetch_assoc($login);
-        $_SESSION["user"] = $dados["nome"];
+        $_SESSION["user"] = $dados["email"];
         $_SESSION["matricula"] = $dados["matricula"];
-        $tipo = $dados['tipo'];
         if (!$matricula == null){
-            echo "<script>window.location.replace('biblioteca.php');</script>";
+            echo "<script>window.location.replace('home.php');</script>";
         }else{
-            echo "<script>window.location.replace('emprestimo.php');</script>";
+            echo "<script>window.location.replace('atas.php');</script>";
         }
     }
     else{
