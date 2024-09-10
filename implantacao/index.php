@@ -22,7 +22,7 @@
                     </svg>&nbsp;<b>LOGIN</b></h3>
                 </div>
                 <div class="card-body">
-                    <form action=".php" method="post">
+                    <form action="login.php" method="post">
                         <label class="form-label">E-mail</label>
                         <input class="form-control" type="text" name="email" required placeholder="Digite seu E-mail"/>
                         <br/>

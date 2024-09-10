@@ -26,7 +26,7 @@ if (!isset($_SESSION["user"])) {
 
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <h2 class="text-center"><b>ATAS</b></h2>
+    <h2 class="text-center"><b>ATAS - SUGESTÕES</b></h2>
     <?php
     echo "<div class='header'>";
     $funcionarios = $_SESSION["user"];
@@ -51,46 +51,29 @@ if (!isset($_SESSION["user"])) {
                 <div class="card-header py-3">
                     <h3 class="my-0 fw-normal"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#6A5ACD" class="bi bi-people-fill" viewBox="0 0 16 16">
                             <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                        </svg>&nbsp;&nbsp;<b>ATAS</b></h3>
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">CADASTRAR ATA</button>
+                        </svg>&nbsp;&nbsp;<b>SUGESTÕES</b></h3>
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">CADASTRAR SUGESTÃO</button>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">TITULO</th>
-                                <th scope="col">DATA DE EMISSÃO</th>
-                                <th scope="col">INICIO</th>
-                                <th scope="col">TERMINO</th>
-                                <th scope="col">PAUTA</th>
+                                <th scope="col">DATA</th>
                                 <th scope="col">DESCRIÇÃO</th>
-                                <th scope="col">PALAVRAS CHAVE</th>
-                                <th scope="col">SETOR</th>
-                                <th scope="col">TIPO</th>
-                                <th scope="col">ESTATUS</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             include 'conecta.php';
-                            include 'login';
-                            $pesquisa = mysqli_query($mysqli, "SELECT * FROM ata");
+                            $pesquisa = mysqli_query($mysqli, "SELECT * FROM sugestoes");
                             $row = mysqli_num_rows($pesquisa);
                             if ($row > 0) {
                                 while ($registro = $pesquisa->fetch_array()) {
                                     $id = $registro['id'];
                                     echo "<tr>";
-                                    echo "<td>" . $registro['titulo'] . "</td>";
-                                    echo "<td>" . $registro['data_emissao'] . "</td>";
-                                    echo "<td>" . $registro['inicio'] . "</td>";
-                                    echo "<td>" . $registro['termino'] . "</td>";
-                                    echo "<td>" . $registro['pauta'] . "</td>";
+                                    echo "<td>" . $registro['data'] . "</td>";
                                     echo "<td>" . $registro['descricao'] . "</td>";
-                                    echo "<td>" . $registro['palavras_chave'] . "</td>";
-                                    echo "<td>" . $registro['setor'] . "</td>";
-                                    echo "<td>" . $registro['tipo'] . "</td>";
-                                    echo "<td>" . $registro['estatus'] . "</td>";
-                                    echo "<td><a href='ediata.php?id=$id' data-bs-toggle='modal' data-bs-target='#exampleModal1$id' data-id='$id'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
+                                    echo "<td><a href='edisugestoes.php?id=$id' data-bs-toggle='modal' data-bs-target='#exampleModal1$id' data-id='$id'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='currentColor' class='bi bi-pencil-square' viewBox='0 0 16 16'>
                                         <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/>
                                         <path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'/>
                                         </svg></a></td>";
@@ -99,11 +82,11 @@ if (!isset($_SESSION["user"])) {
                                     <div class='modal-dialog'>
                                       <div class='modal-content'>
                                         <div class='modal-header'>
-                                          <h5 class='modal-title' id='exampleModalLabel'>Edição de Atas</h5>
+                                          <h5 class='modal-title' id='exampleModalLabel'>Edição de Sugestões</h5>
                                           <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                         </div>
                                         <div class='modal-body text-start'>";
-                                          include 'ediata.php';
+                                          include 'edisugestoes.php';
                                     echo "</div>
                                         <div class='modal-footer'>
                                           <button type='button' class='btn btn-outline-danger' data-bs-dismiss='modal'>Fechar</button>
@@ -126,48 +109,15 @@ if (!isset($_SESSION["user"])) {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de funcionarios</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de sugestões</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <form action="cadfuncionarios.php" method="post">
-                        <label class="form-label">Título</label>
-                        <input class="form-control" type="text" name="titulo" required placeholder="Digite o titulo"/>
-                        <br/>
                         <label class="form-label">Data de emissão</label>
-                        <input class="form-control" type="date" name="data_emissao" required placeholder="Coloque a data de emissão"/>
-                        <br/>
-                        <label class="form-label">Ínicio</label>
-                        <input class="form-control" type="date" name="inicio" required placeholder="Coloque a data de ínicio"/>
-                        <br/>
-                        <label class="form-label">Término</label>
-                        <input class="form-control" type="date" name="termino" required placeholder="Coloque a data de término"/>
-                        <br/>
-                        <label class="form-label">Pauta</label>
-                        <input class="form-control" type="text" name="pauta" required placeholder="Digite a pauta"/>
-                        <br/>
+                        <input class="form-control" type="date" name="data" required placeholder="Coloque a data"/>
                         <label class="form-label">Descrição</label>
                         <input class="form-control" type="text" name="descricao" required placeholder="Digite a descrição"/>
-                        <br/>
-                        <label class="form-label">Palavras chave</label>
-                        <input class="form-control" type="text" name="palavras_chave" required placeholder="Coloque as palavras chave"/>
-                        <br/>
-                        <label class="form-label">Setor</label>
-                        <input class="form-control" type="text" name="setor" required placeholder="Coloque o setor reponsável"/>
-                        <br/>
-                        <select class="form-select" aria-label="Selecione um tipo" name="tipo">
-                            <option selected>Selecione um tipo</option>
-                            <option value="publica">Pública</option>
-                            <option value="privada">Privada</option>
-                        </select>
-                        <br/>
-                        <select class="form-select" aria-label="Selecione um tipo" name="estatus">
-                            <option selected>Selecione um estatus</option>
-                            <option value="Em processo de emissão">Em processo de emissão</option>
-                            <option value="Em processo de revisão">Em processo de revisão</option>
-                            <option value="Em processo de conclusão">Em processo de conclusão</option>
-                            <option value="Emitida">Emitida</option>
-                        </select>
                         <input type="submit" class="btn btn-outline-success" value="CADASTRAR"/>
                     </form>
                 </div>

@@ -3,14 +3,15 @@
     include 'conecta.php';
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    $login = mysqli_query($mysqli,"SELECT * FROM funcionarios, externos WHERE email='$email' AND senha='$senha'") or die("Erro ao selecionar!");
+    $login = mysqli_query($mysqli,"SELECT * FROM funcionarios WHERE email='$email' AND senha='$senha'") or die("Erro ao selecionar!");
     if (mysqli_num_rows($login) > 0) {
         $dados = mysqli_fetch_assoc($login);
         $_SESSION["user"] = $dados["email"];
         $_SESSION["matricula"] = $dados["matricula"];
-        if (!$matricula == null){
+        if (!$dados == null){
             echo "<script>window.location.replace('home.php');</script>";
-        }else{
+        }else if($dados == null){
+            $loginExterno = mysqli_query($mysqli,"SELECT * FROM externo WHERE email='$email' AND senha='$senha'") or die("Erro ao selecionar!");
             echo "<script>window.location.replace('atas.php');</script>";
         }
     }

@@ -1,6 +1,9 @@
 <?php
-    $conn = mysqli_connect("127.0.0.1","root","","reuniao");
-    mysqli_set_charset($conn,"utf8");
-    if (!$conn) {
-        echo "ERRO!: ".mysqli_connect_error().PHP_EOL;
+    $hostname = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $database = "reuniao";
+    $mysqli = mysqli_connect($hostname,$username,$password,$database);
+    if (!$mysqli) {
+        die("Falha na conexão:".mysqli_connect_error());
     }
